@@ -6,6 +6,8 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import ru.job4j.manytomany.model.Address;
+import ru.job4j.manytomany.model.Author;
+import ru.job4j.manytomany.model.Book;
 import ru.job4j.manytomany.model.Person;
 
 public class HbmRun {
@@ -32,6 +34,30 @@ public class HbmRun {
 
             Person person = session.get(Person.class, 1);
             session.remove(person);
+
+            Book hfJava = Book.of("Head First Java");
+            Book hfServlets = Book.of("Head First Servlets & JSP");
+            Book hfPatterns = Book.of("Head First Design Patterns");
+            Book hfHTML = Book.of("Head First Html With CSS & XHTML");
+
+            Author kathy = Author.of("Kathy Sierra");
+            kathy.addBook(hfJava);
+            kathy.addBook(hfServlets);
+            kathy.addBook(hfPatterns);
+
+            Author bert = Author.of("Bert Bates");
+            bert.addBook(hfJava);
+
+            Author elisabeth = Author.of("Elisabeth Freeman");
+            elisabeth.addBook(hfPatterns);
+            elisabeth.addBook(hfHTML);
+
+            session.persist(kathy);
+            session.persist(bert);
+            session.persist(elisabeth);
+
+            Author author = session.get(Author.class, bert.getId());
+            session.remove(author);
 
             session.getTransaction().commit();
             session.close();
