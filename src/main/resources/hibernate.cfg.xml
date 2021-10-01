@@ -22,5 +22,7 @@
         <mapping class="ru.job4j.manytomany.model.Address" />
         <mapping class="ru.job4j.manytomany.model.Book" />
         <mapping class="ru.job4j.manytomany.model.Author" />
+        <mapping class="ru.job4j.lazy.model.Task" />
+        <mapping class="ru.job4j.lazy.model.Category" />
     </session-factory>
 </hibernate-configuration>
