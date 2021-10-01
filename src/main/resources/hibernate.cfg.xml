@@ -20,6 +20,8 @@
         <mapping class="ru.job4j.manytomany.model.Address" />
         <mapping class="ru.job4j.manytomany.model.Book" />
         <mapping class="ru.job4j.manytomany.model.Author" />
+        <mapping class="ru.job4j.manytomany.model.Human" />
+        <mapping class="ru.job4j.manytomany.model.City" />
         <mapping class="ru.job4j.lazy.model.Task" />
         <mapping class="ru.job4j.lazy.model.Category" />
         <mapping class="ru.job4j.lazy.model.Model" />
