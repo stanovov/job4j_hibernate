@@ -16,5 +16,7 @@
 
         <mapping class="ru.job4j.many.model.Role" />
         <mapping class="ru.job4j.many.model.User" />
+        <mapping class="ru.job4j.many.model.Brand" />
+        <mapping class="ru.job4j.many.model.Model" />
     </session-factory>
 </hibernate-configuration>
