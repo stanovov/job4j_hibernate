@@ -16,13 +16,13 @@
 
         <mapping class="ru.job4j.many.model.Role" />
         <mapping class="ru.job4j.many.model.User" />
-        <mapping class="ru.job4j.many.model.Brand" />
-        <mapping class="ru.job4j.many.model.Model" />
         <mapping class="ru.job4j.manytomany.model.Person" />
         <mapping class="ru.job4j.manytomany.model.Address" />
         <mapping class="ru.job4j.manytomany.model.Book" />
         <mapping class="ru.job4j.manytomany.model.Author" />
         <mapping class="ru.job4j.lazy.model.Task" />
         <mapping class="ru.job4j.lazy.model.Category" />
+        <mapping class="ru.job4j.lazy.model.Model" />
+        <mapping class="ru.job4j.lazy.model.Brand" />
     </session-factory>
 </hibernate-configuration>
