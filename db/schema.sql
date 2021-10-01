@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS j_role_j_user;
 DROP TABLE IF EXISTS j_user;
 DROP TABLE IF EXISTS j_role;
 
