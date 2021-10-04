@@ -13,6 +13,7 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL10Dialect</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.jdbc.time_zone">Asia/Tokyo</property>
 
         <mapping class="ru.job4j.many.model.Role" />
         <mapping class="ru.job4j.many.model.User" />
@@ -26,5 +27,6 @@
         <mapping class="ru.job4j.lazy.model.Category" />
         <mapping class="ru.job4j.lazy.model.Model" />
         <mapping class="ru.job4j.lazy.model.Brand" />
+        <mapping class="ru.job4j.date.model.Product" />
     </session-factory>
 </hibernate-configuration>
