@@ -28,5 +28,8 @@
         <mapping class="ru.job4j.lazy.model.Model" />
         <mapping class="ru.job4j.lazy.model.Brand" />
         <mapping class="ru.job4j.date.model.Product" />
+        <mapping class="ru.job4j.relationship.model.Driver" />
+        <mapping class="ru.job4j.relationship.model.Engine" />
+        <mapping class="ru.job4j.relationship.model.Car" />
     </session-factory>
 </hibernate-configuration>
