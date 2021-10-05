@@ -7,10 +7,12 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
 import ru.job4j.hql.model.Candidate;
+import ru.job4j.hql.model.VacanciesBase;
+import ru.job4j.hql.model.Vacancy;
 
 public class HbmRun {
-    @SuppressWarnings("unchecked")
     public static void main(String[] args) {
+        Candidate rsl = null;
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure().build();
         try {
@@ -18,36 +20,25 @@ public class HbmRun {
             Session session = sf.openSession();
             session.beginTransaction();
 
-            Candidate candidate1 = Candidate.of("Alex", 3.5, 275_000);
-            Candidate candidate2 = Candidate.of("Pavel", 2.0, 200_000);
-            Candidate candidate3 = Candidate.of("John", 0.5, 100_000);
+            Vacancy vacancy1 = Vacancy.of("Java Developer", "Accenture");
+            Vacancy vacancy2 = Vacancy.of("Java Developer", "EPAM");
+            Vacancy vacancy3 = Vacancy.of("Junior Java Developer", "Sber");
 
-            session.save(candidate1);
-            session.save(candidate2);
-            session.save(candidate3);
+            VacanciesBase vacanciesBase = new VacanciesBase();
+            vacanciesBase.addVacancy(vacancy1);
+            vacanciesBase.addVacancy(vacancy2);
+            vacanciesBase.addVacancy(vacancy3);
+            session.save(vacanciesBase);
 
-            session.createQuery("from Candidate ")
-                    .list()
-                    .forEach(System.out::println);
+            Candidate candidate = Candidate.of("Semyon", 0.5, 100_000);
+            candidate.setVacanciesBase(vacanciesBase);
+            session.save(candidate);
 
-            Candidate alex = (Candidate) session.createQuery("from Candidate c where c.id = :pId")
-                    .setParameter("pId", 1)
-                    .uniqueResult();
-            System.out.println(alex);
-
-            Candidate pavel = (Candidate) session.createQuery("from Candidate c where c.name = :pName")
-                    .setParameter("pName", "Pavel")
-                    .uniqueResult();
-            System.out.println(pavel);
-
-            session.createQuery("update from Candidate c set c.salary = :pSalary where c.id = :pId")
-                    .setParameter("pSalary", 120_000)
-                    .setParameter("pId", 3)
-                    .executeUpdate();
-
-            session.createQuery("delete from Candidate where id = :pId")
-                    .setParameter("pId", 1)
-                    .executeUpdate();
+            rsl = session.createQuery("select distinct c from Candidate c "
+                    + "join fetch c.vacanciesBase vb "
+                    + "join fetch vb.vacancies v "
+                    + "where c.id = :pID", Candidate.class
+            ).setParameter("pID", 1).uniqueResult();
 
             session.getTransaction().commit();
             session.close();
@@ -56,5 +47,6 @@ public class HbmRun {
         } finally {
             StandardServiceRegistryBuilder.destroy(registry);
         }
+        System.out.println(rsl);
     }
 }

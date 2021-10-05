@@ -17,6 +17,10 @@ public class Candidate {
 
     private int salary;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vacancies_base_id")
+    private VacanciesBase vacanciesBase;
+
     public static Candidate of(String name, double experience, int salary) {
         Candidate candidate = new Candidate();
         candidate.setName(name);
@@ -57,6 +61,14 @@ public class Candidate {
         this.salary = salary;
     }
 
+    public VacanciesBase getVacanciesBase() {
+        return vacanciesBase;
+    }
+
+    public void setVacanciesBase(VacanciesBase vacanciesBase) {
+        this.vacanciesBase = vacanciesBase;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -81,6 +93,7 @@ public class Candidate {
                 + ", name='" + name + '\''
                 + ", experience=" + experience
                 + ", salary=" + salary
+                + ", vacanciesBase=" + vacanciesBase
                 + '}';
     }
 }
