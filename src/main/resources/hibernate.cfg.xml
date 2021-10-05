@@ -19,8 +19,8 @@
         <mapping class="ru.job4j.many.model.User" />
         <mapping class="ru.job4j.manytomany.model.Person" />
         <mapping class="ru.job4j.manytomany.model.Address" />
-        <mapping class="ru.job4j.manytomany.model.Book" />
-        <mapping class="ru.job4j.manytomany.model.Author" />
+<!--        <mapping class="ru.job4j.manytomany.model.Book" />-->
+<!--        <mapping class="ru.job4j.manytomany.model.Author" />-->
         <mapping class="ru.job4j.manytomany.model.Human" />
         <mapping class="ru.job4j.manytomany.model.City" />
         <mapping class="ru.job4j.lazy.model.Task" />
@@ -32,6 +32,8 @@
         <mapping class="ru.job4j.relationship.model.Engine" />
         <mapping class="ru.job4j.relationship.model.Car" />
         <mapping class="ru.job4j.hql.model.Student" />
+        <mapping class="ru.job4j.hql.model.Account" />
+        <mapping class="ru.job4j.hql.model.Book" />
         <mapping class="ru.job4j.hql.model.Candidate" />
     </session-factory>
 </hibernate-configuration>
