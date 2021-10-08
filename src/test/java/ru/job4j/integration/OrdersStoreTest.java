@@ -82,7 +82,20 @@ public class OrdersStoreTest {
         store.save(order3);
         List<Order> exceptedList = List.of(order1, order2, order3);
         List<Order> resultList = (List<Order>) store.findAll();
-        compareLists(resultList, exceptedList);
+
+        assertThat(resultList.size(), is(exceptedList.size()));
+
+        Order resultOrder1 = resultList.get(0);
+        Order exceptedOrder1 = exceptedList.get(0);
+        compareTwoOrders(resultOrder1, exceptedOrder1);
+
+        Order resultOrder2 = resultList.get(1);
+        Order exceptedOrder2 = exceptedList.get(1);
+        compareTwoOrders(resultOrder2, exceptedOrder2);
+
+        Order resultOrder3 = resultList.get(2);
+        Order exceptedOrder3 = exceptedList.get(2);
+        compareTwoOrders(resultOrder3, exceptedOrder3);
     }
 
     @Test
@@ -136,18 +149,22 @@ public class OrdersStoreTest {
         store.save(order3);
         List<Order> exceptedList = List.of(order1, order2);
         List<Order> resultList = (List<Order>) store.findByName(order1.getName());
-        compareLists(resultList, exceptedList);
+
+        assertThat(resultList.size(), is(exceptedList.size()));
+
+        Order resultOrder1 = resultList.get(0);
+        Order exceptedOrder1 = exceptedList.get(0);
+        compareTwoOrders(resultOrder1, exceptedOrder1);
+
+        Order resultOrder2 = resultList.get(1);
+        Order exceptedOrder2 = exceptedList.get(1);
+        compareTwoOrders(resultOrder2, exceptedOrder2);
     }
 
-    private void compareLists(List<Order> resultList, List<Order> exceptedList) {
-        assertThat(resultList.size(), is(exceptedList.size()));
-        for (int i = 0; i < exceptedList.size(); i++) {
-            Order resultOrder = resultList.get(i);
-            Order exceptedOrder = exceptedList.get(i);
-            assertThat(resultOrder.getId(), is(exceptedOrder.getId()));
-            assertThat(resultOrder.getName(), is(exceptedOrder.getName()));
-            assertThat(resultOrder.getDescription(), is(exceptedOrder.getDescription()));
-            assertThat(resultOrder.getCreated(), is(exceptedOrder.getCreated()));
-        }
+    private void compareTwoOrders(Order resultOrder, Order exceptedOrder) {
+        assertThat(resultOrder.getId(), is(exceptedOrder.getId()));
+        assertThat(resultOrder.getName(), is(exceptedOrder.getName()));
+        assertThat(resultOrder.getDescription(), is(exceptedOrder.getDescription()));
+        assertThat(resultOrder.getCreated(), is(exceptedOrder.getCreated()));
     }
 }
