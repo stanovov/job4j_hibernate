@@ -84,18 +84,7 @@ public class OrdersStoreTest {
         List<Order> resultList = (List<Order>) store.findAll();
 
         assertThat(resultList.size(), is(exceptedList.size()));
-
-        Order resultOrder1 = resultList.get(0);
-        Order exceptedOrder1 = exceptedList.get(0);
-        compareTwoOrders(resultOrder1, exceptedOrder1);
-
-        Order resultOrder2 = resultList.get(1);
-        Order exceptedOrder2 = exceptedList.get(1);
-        compareTwoOrders(resultOrder2, exceptedOrder2);
-
-        Order resultOrder3 = resultList.get(2);
-        Order exceptedOrder3 = exceptedList.get(2);
-        compareTwoOrders(resultOrder3, exceptedOrder3);
+        assertThat(resultList, is(exceptedList));
     }
 
     @Test
@@ -151,20 +140,6 @@ public class OrdersStoreTest {
         List<Order> resultList = (List<Order>) store.findByName(order1.getName());
 
         assertThat(resultList.size(), is(exceptedList.size()));
-
-        Order resultOrder1 = resultList.get(0);
-        Order exceptedOrder1 = exceptedList.get(0);
-        compareTwoOrders(resultOrder1, exceptedOrder1);
-
-        Order resultOrder2 = resultList.get(1);
-        Order exceptedOrder2 = exceptedList.get(1);
-        compareTwoOrders(resultOrder2, exceptedOrder2);
-    }
-
-    private void compareTwoOrders(Order resultOrder, Order exceptedOrder) {
-        assertThat(resultOrder.getId(), is(exceptedOrder.getId()));
-        assertThat(resultOrder.getName(), is(exceptedOrder.getName()));
-        assertThat(resultOrder.getDescription(), is(exceptedOrder.getDescription()));
-        assertThat(resultOrder.getCreated(), is(exceptedOrder.getCreated()));
+        assertThat(resultList, is(exceptedList));
     }
 }
