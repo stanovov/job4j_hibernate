@@ -36,9 +36,7 @@ public class HbmRun {
             session.save(task2);
             session.save(task3);
 
-            list = session.createQuery(
-                    "select distinct c from Category c join fetch c.tasks"
-            ).list();
+            list = session.createQuery("select distinct c from Category c join fetch c.tasks").list();
 
             Brand lamborghini = Brand.of("Lamborghini");
             Model gallardo = Model.of("Gallardo", lamborghini);
@@ -58,9 +56,7 @@ public class HbmRun {
             session.save(diablo);
             session.save(aventador);
 
-            brands = session.createQuery(
-                    "select distinct b from Brand b join fetch b.models"
-            ).list();
+            brands = session.createQuery("select distinct b from Brand b join fetch b.models").list();
 
             session.getTransaction().commit();
             session.close();
